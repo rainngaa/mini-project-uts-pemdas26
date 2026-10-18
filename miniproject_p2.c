@@ -1,38 +1,46 @@
 #include <stdio.h>
 
-int main(){
-    // Mahasiswa 1  - Vannesa Sovilia Ferrari (3226600080)
-    // Inisialisasi variabel.
+int main() {
+    char nis[20], nama[50];
+    float tugas, uts, uas, nilaiAkhir;
+    char grade;
 
+    printf("Masukkan NIS         : ");
+    scanf("%s", nis);
 
-    // Input NIS
+    printf("Masukkan nama siswa  : ");
+    scanf("%s", nama);
 
-    //Input nama siswa
+    printf("Masukkan nilai Tugas : ");
+    scanf("%f", &tugas);
 
+    printf("Masukkan nilai UTS   : ");
+    scanf("%f", &uts);
 
-    // Input nilai tugas
+    printf("Masukkan nilai UAS   : ");
+    scanf("%f", &uas);
 
-    // Input nilai UTS
+    nilaiAkhir = (tugas * 0.3) +
+                 (uts * 0.3) +
+                 (uas * 0.4);
 
-    // Input nilai UAS
+    if (nilaiAkhir >= 85) {
+        grade = 'A';
+    } else if (nilaiAkhir >= 75) {
+        grade = 'B';
+    } else if (nilaiAkhir >= 65) {
+        grade = 'C';
+    } else if (nilaiAkhir >= 50) {
+        grade = 'D';
+    } else {
+        grade = 'E';
+    }
 
-    
-    // Validasi nilai 1-100 dg do-while
-
-
-    // Menampilkan data siswa
-
-
-    
-    // ====================
-
-    // Mahasiswa 2 - Ngesti Neyza Sharafina Putri (3226600083)
-    // Menghitung nilai akhir.  
-    // Menentukan grade.  
-    // Menentukan status kelulusan.  
-    // Menggunakan if-else.  
-    // Menggunakan for untuk pengolahan nilai.
-
+    printf("\n--- HASIL NILAI SISWA ---\n");
+    printf("NIS         : %s\n", nis);
+    printf("Nama        : %s\n", nama);
+    printf("Nilai Akhir : %.2f\n", nilaiAkhir);
+    printf("Grade       : %c\n", grade);
 
     return 0;
 }
