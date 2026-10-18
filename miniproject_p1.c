@@ -1,22 +1,22 @@
-/* Kelompok 7 - Sistem Pengelolaan Nilai Sekolah
-   Bagian 1: Data Siswa & Input (Sena) - Bahasa C */
-
 #include <stdio.h>
-#include <string.h>
 
 int main() {
-    char nis[20], nama[50];
+    long nis;
     float nilaiTugas, nilaiUTS, nilaiUAS;
     char ulang;
+    int c;
 
     do {
-        /* Input data siswa */
-        printf("\nMasukkan NIS         : ");
-        scanf("%19s", nis);
-        getchar();
-        printf("Masukkan nama siswa  : ");
-        fgets(nama, sizeof(nama), stdin);
-        nama[strcspn(nama, "\n")] = '\0';
+        /* Input NIS (harus angka positif) */
+        do {
+            printf("\nMasukkan NIS         : ");
+            if (scanf("%ld", &nis) != 1) {
+                while (getchar() != '\n');
+                nis = -1;
+            }
+            if (nis <= 0)
+                printf("NIS harus berupa angka positif.\n");
+        } while (nis <= 0);
 
         /* Input nilai + validasi 0-100 (do-while) */
         do {
@@ -49,28 +49,29 @@ int main() {
                 printf("Nilai harus 0 - 100.\n");
         } while (nilaiUAS < 0 || nilaiUAS > 100);
 
-        /* Menampilkan data siswa */
+        while (getchar() != '\n');   /* buang sisa Enter */
+
+        /* Menampilkan data siswa.
+           Nama tidak disimpan (tanpa array), jadi diketik langsung
+           di baris "Nama" dan tampil di layar saat diketik. */
         printf("\n--- DATA SISWA ---\n");
-        printf("NIS         : %s\n", nis);
-        printf("Nama        : %s\n", nama);
+        printf("NIS         : %ld\n", nis);
+        printf("Nama        : ");
+        while ((c = getchar()) != '\n' && c != EOF);
         printf("Nilai Tugas : %.2f\n", nilaiTugas);
         printf("Nilai UTS   : %.2f\n", nilaiUTS);
         printf("Nilai UAS   : %.2f\n", nilaiUAS);
 
         /* Remedial jika nilai UTS atau UAS kurang dari 50 */
-        if (nilaiUTS < 50 && nilaiUAS < 50)
-            printf("Keterangan  : REMEDIAL (UTS dan UAS)\n");
-        else if (nilaiUTS < 50)
-            printf("Keterangan  : REMEDIAL (UTS)\n");
-        else if (nilaiUAS < 50)
-            printf("Keterangan  : REMEDIAL (UAS)\n");
+        if (nilaiUTS < 50 || nilaiUAS < 50)
+            printf("Keterangan  : REMEDIAL\n");
         else
             printf("Keterangan  : Tidak remedial\n");
 
         /* Perulangan proses */
         printf("\nInput siswa lain? (y/n): ");
         scanf(" %c", &ulang);
-        getchar();
+        while (getchar() != '\n');
     } while (ulang == 'y' || ulang == 'Y');
 
     return 0;
