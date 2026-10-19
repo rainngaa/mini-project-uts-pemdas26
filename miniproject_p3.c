@@ -75,7 +75,7 @@ int main() {
            Nama tidak disimpan (tanpa array), jadi diketik langsung
            di baris "Nama" dan tampil di layar saat diketik. */
         printf("\n--- DATA SISWA ke-%d ---\n", i);
-        printf("NIS         : %ld\n", nis);
+        printf("NIS         : %d\n", nis);
         printf("Nama        : ");
         while ((c = getchar()) != '\n' && c != EOF);
         printf("Nilai Tugas : %.2f\n", nilaiTugas);
