@@ -30,7 +30,7 @@ int main() {
         /* Input NIS (harus angka positif) */
         do {
             printf("\nMasukkan NIS         : ");
-            if (scanf("%ld", &nis) != 1) {
+            if (scanf("%d", &nis) != 1) {
                 while (getchar() != '\n');
                 nis = -1;
             }
